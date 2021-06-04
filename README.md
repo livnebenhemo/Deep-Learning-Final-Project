@@ -1,6 +1,6 @@
 # Final Project
 This is our final project of Deep Learning Course.
-The topic of our project is adersraial examples for camera relative pose estimation neural network.
+The topic of our project is adersarial examples for camera relative pose estimation neural network.
 In our project, we based use RelPoseNet as our model :
 
 # RelPoseNet

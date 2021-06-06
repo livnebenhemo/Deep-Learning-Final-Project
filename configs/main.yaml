@@ -17,7 +17,7 @@ train_params:
     lrate_decay_steps: 15000
     lrate_decay_factor: 0.5
 output_params:
-  out_dir: /data/output/relposenet
+  out_dir: /data/output/Deep-Learning-Final-Project
   logger_dir: ${output_params.out_dir}/tboard/${model_params.backbone_net}
   snapshot_dir: ${output_params.out_dir}/snapshots/${model_params.backbone_net}
   validate_interval: 1300

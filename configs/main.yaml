@@ -1,9 +1,9 @@
 pipeline: Relative Camera Pose Estimation pipeline
 data_params:
-  work_dir: /content/RelPoseNet
+  work_dir: /content/Deep-Learning-Final-Project
   img_dir: /ssd/data/7scenes-light
-  train_pairs_fname: /content/RelPoseNet/assets/data/db_all_med_hard_train.txt
-  val_pairs_fname: /content/RelPoseNet/assets/data/db_all_med_hard_valid.txt
+  train_pairs_fname: /content/Deep-Learning-Final-Project/assets/data/db_all_med_hard_train.txt
+  val_pairs_fname: /content/Deep-Learning-Final-Project/assets/data/db_all_med_hard_valid.txt
 model_params:
   backbone_net: resnet34
   resume_snapshot: null

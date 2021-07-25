@@ -14,15 +14,20 @@ else
 end
 
 % Txt file with network predictions
-file_id_est = fopen('../../output/est_rel_poses.txt');
+file_id_est = fopen('C:\Users\rbd-lab\PycharmProjects\RelPoseNet\output\relposenet\7scenes\est_rel_poses_toggle_fgsm_0.05.txt');
 
 data_cells = textscan(file_id_gt, '%s %s %d %d %d %f %f %f %f %f %f %f %f %f %f %f %f %f %f');
+
 translation_gt_q = [data_cells{1,4+2} data_cells{1,5+2} data_cells{1,6+2}];
+translation_gt_q = translation_gt_q(1:20000, :); % !!!
 orientation_gt_q = [data_cells{1,7+2} data_cells{1,8+2} data_cells{1,9+2} ...
                   data_cells{1,10+2}];
+orientation_gt_q = orientation_gt_q(1:20000, :); % !!!
 translation_gt_db = [data_cells{1,11+2} data_cells{1,12+2} data_cells{1,13+2}];
+translation_gt_db = translation_gt_db(1:20000, :); % !!!
 orientation_gt_db = [data_cells{1,14+2} data_cells{1,15+2} data_cells{1,16+2} ...
                   data_cells{1,17+2}];
+orientation_gt_db = orientation_gt_db(1:20000, :); % !!!
 
 number_of_pairs = size(translation_gt_q, 1);
 
@@ -30,7 +35,9 @@ data_cells_est = textscan(file_id_est, '%f %f %f %f %f %f %f');
 
 orientation_est = [data_cells_est{1, 1} data_cells_est{1, 2} ...
                    data_cells_est{1, 3} data_cells_est{1, 4}];
+orientation_est = orientation_est(1:20000, :); % !!!
 translation_est = [data_cells_est{1, 5} data_cells_est{1, 6} data_cells_est{1, 7}];
+translation_est = translation_est(1:20000, :); % !!!
 
 %estimations = fread(pred_file_id, [7 Inf], 'float')';
 fclose(file_id_gt);
@@ -253,39 +260,43 @@ end
 
 %% results
 if strcmp(dataset_name, '7-Scenes')
-    chess = median(err_quat(6001:8000));
+    % chess = median(err_quat(6001:8000));
     fire = median(err_quat(1:2000));
-    heads = median(err_quat(8001:9000));
-    office = median(err_quat(2001:6000));
-    pumpkin = median(err_quat(15001:17000));
-    redkitchen = median(err_quat(10001:15000));
-    stairs = median(err_quat(9001:10000));
+    % heads = median(err_quat(8001:9000));
+    % office = median(err_quat(2001:6000));
+    office = median(err_quat(2001:4000));
+%     pumpkin = median(err_quat(15001:17000));
+%     redkitchen = median(err_quat(10001:15000));
+%     stairs = median(err_quat(9001:10000));
     fprintf('Orientation error, deg:\n');
-    fprintf('chess: %.2f\n', chess);
+    % fprintf('chess: %.2f\n', chess);
     fprintf('fire: %.2f\n', fire);
-    fprintf('heads: %.2f\n', heads);
+    % fprintf('heads: %.2f\n', heads);
     fprintf('office: %.2f\n', office);
-    fprintf('pumpkin: %.2f\n', pumpkin);
-    fprintf('redkitchen: %.2f\n', redkitchen);
-    fprintf('stairs: %.2f\n', stairs);
-    fprintf('Mean averaged orientation: %.2f deg.\n', mean([chess fire heads office pumpkin redkitchen stairs]));
+%     fprintf('pumpkin: %.2f\n', pumpkin);
+%     fprintf('redkitchen: %.2f\n', redkitchen);
+%     fprintf('stairs: %.2f\n', stairs);
+%    fprintf('Mean averaged orientation: %.2f deg.\n', mean([chess fire heads office pumpkin redkitchen stairs]));
+    fprintf('Mean averaged orientation: %.2f deg.\n', mean([fire office]));
     fprintf('--------------------------------------------------------\n');
-    chess = median(err_trans(6001:8000));
+    % chess = median(err_trans(6001:8000));
     fire = median(err_trans(1:2000));
-    heads = median(err_trans(8001:9000));
-    office = median(err_trans(2001:6000));
-    pumpkin = median(err_trans(15001:17000));
-    redkitchen = median(err_trans(10001:15000));
-    stairs = median(err_trans(9001:10000));
+    % heads = median(err_trans(8001:9000));
+    % office = median(err_trans(2001:6000));
+    office = median(err_trans(2001:4000));
+%     pumpkin = median(err_trans(15001:17000));
+%     redkitchen = median(err_trans(10001:15000));
+%     stairs = median(err_trans(9001:10000));
     fprintf('Translation error, m:\n');
-    fprintf('chess: %.2f\n', chess);
+   % fprintf('chess: %.2f\n', chess);
     fprintf('fire: %.2f\n', fire);
-    fprintf('heads: %.2f\n', heads);
+    %fprintf('heads: %.2f\n', heads);
     fprintf('office: %.2f\n', office);
-    fprintf('pumpkin: %.2f\n', pumpkin);
-    fprintf('redkitchen: %.2f\n', redkitchen);
-    fprintf('stairs: %.2f\n', stairs);
-    fprintf('Mean averaged translation: %.2f m.\n', mean([chess fire heads office pumpkin redkitchen stairs]));
+%     fprintf('pumpkin: %.2f\n', pumpkin);
+%     fprintf('redkitchen: %.2f\n', redkitchen);
+%     fprintf('stairs: %.2f\n', stairs);
+%     fprintf('Mean averaged translation: %.2f m.\n', mean([chess fire heads office pumpkin redkitchen stairs]));
+     fprintf('Mean averaged translation: %.2f m.\n', mean([fire office]));
 else
     conference = median(err_quat(1:949));
     kitchen1 = median(err_quat(950:1939));

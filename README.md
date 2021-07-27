@@ -39,11 +39,6 @@ Evaluation and training have been performed on the 7-Scenes dataset available [h
 - if everything goes fine, one should get localization performance presented in the table above.
 
 
-### Training
-- modify a config file `RelPoseNet/configs/main.yaml` by changing `work_dir`, `img_dir`, and `out_dir`
-- to perform training, run `RelPoseNet/main.py`
-
-
 ## License
 Our code is released under the Creative Commons BY-NC-SA 3.0, available only for non-commercial use.
 

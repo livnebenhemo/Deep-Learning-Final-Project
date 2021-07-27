@@ -1,8 +1,3 @@
-# Final Project
-This is our final project of Deep Learning Course.
-The topic of our project is adersarial examples for camera relative pose estimation neural network.
-In our project, we based use RelPoseNet as our model :
-
 # RelPoseNet
 A PyTorch version of the ego-motion estimation pipeline proposed in [our work](https://openaccess.thecvf.com/content_ICCV_2017_workshops/papers/w17/Laskar_Camera_Relocalization_by_ICCV_2017_paper.pdf). The official implementation (in Lua) is available at https://github.com/AaltoVision/camera-relocalisation
 

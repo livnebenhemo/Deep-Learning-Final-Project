@@ -14,7 +14,7 @@ else
 end
 
 % Txt file with network predictions
-file_id_est = fopen('C:\Users\rbd-lab\PycharmProjects\RelPoseNet\output\relposenet\7scenes\est_rel_poses_toggle_fgsm_0.05.txt');
+file_id_est = fopen('../../estimations/20000/weighted-FGM/2-images/0.1.txt');
 
 data_cells = textscan(file_id_gt, '%s %s %d %d %d %f %f %f %f %f %f %f %f %f %f %f %f %f %f');
 

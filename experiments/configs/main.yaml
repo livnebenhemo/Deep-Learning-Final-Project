@@ -3,8 +3,8 @@ defaults:
   - experiment: 7scenes
   - model: relposenet
 paths:
-  work_dir: /data/projects/RelPoseNet
-  datasets_home_dir: /ssd/data
+  work_dir: D:/blivn/Documents/CS/Choise Courses/Deep Learning/Final Project/Final Project/RelPoseNet
+  datasets_home_dir: D:\blivn\Documents\CS\Choise Courses\Deep Learning\Final Project\Final Project\Data_without_depth_and_pose
   output_home_dir: ${paths.work_dir}/output
   snapshots_dir: ${paths.work_dir}/data/snapshots
 hydra:

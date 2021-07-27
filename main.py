@@ -1,5 +1,5 @@
 import hydra
-from relposenet.pipeline import Pipeline
+from RelPoseNet.relposenet.pipeline import Pipeline
 
 
 @hydra.main(config_path="configs", config_name="main")

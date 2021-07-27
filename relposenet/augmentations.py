@@ -12,6 +12,15 @@ def get_augmentations():
     return train_aug, val_aug
 
 
+def get_defense_augmentation():
+    mean, std = get_imagenet_mean_std()
+    transform = transforms.Compose([transforms.CenterCrop(size=224),
+                                    transforms.Normalize(mean, std)
+                                    ])
+    return transform
+
+
+
 def train_augmentations():
     mean, std = get_imagenet_mean_std()
     transform = transforms.Compose([transforms.RandomCrop(size=224),

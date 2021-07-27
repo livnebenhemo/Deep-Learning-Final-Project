@@ -2,14 +2,12 @@ import os
 from os import path as osp
 import time
 from tqdm import tqdm
-from numba import cuda
 import torch
-from tensorboardX import SummaryWriter
-from relposenet.model import RelPoseNet
-from relposenet.dataset import SevenScenesRelPoseDataset
-from relposenet.augmentations import get_augmentations
-from relposenet.criterion import RelPoseCriterion
-from relposenet.utils import cycle, set_seed
+from RelPoseNet.relposenet.model import RelPoseNet
+from RelPoseNet.relposenet.dataset import SevenScenesRelPoseDataset
+from RelPoseNet.relposenet.augmentations import get_augmentations
+from RelPoseNet.relposenet.criterion import RelPoseCriterion
+from RelPoseNet.relposenet.utils import cycle, set_seed
 
 
 class Pipeline(object):
@@ -38,8 +36,6 @@ class Pipeline(object):
         # Criterion
         self.criterion = RelPoseCriterion(self.cfg.train_params.alpha).to(self.device)
 
-        # create writer (logger)
-        self.writer = SummaryWriter(self.cfg.output_params.logger_dir)
 
         self.start_step = 0
         self.val_total_loss = 1e6
@@ -61,14 +57,14 @@ class Pipeline(object):
                                                    batch_size=cfg_train.bs,
                                                    shuffle=True,
                                                    pin_memory=True,
-                                                   num_workers=getattr(cuda.get_current_device(), 'MULTIPROCESSOR_COUNT'),
+                                                   num_workers=cfg_train.n_workers,
                                                    drop_last=True)
 
         val_loader = torch.utils.data.DataLoader(val_dataset,
                                                  batch_size=cfg_train.bs,
                                                  shuffle=False,
                                                  pin_memory=True,
-                                                 num_workers=getattr(cuda.get_current_device(), 'MULTIPROCESSOR_COUNT'),
+                                                 num_workers=cfg_train.n_workers,
                                                  drop_last=True)
         return train_loader, val_loader
 
@@ -84,6 +80,16 @@ class Pipeline(object):
         fname_out = 'best_val.pth' if best_val else 'snapshot{:06d}.pth'.format(step)
         save_path = osp.join(self.cfg.output_params.snapshot_dir, fname_out)
         model_state = self.model.state_dict()
+        try:
+            torch.save({'step': step,
+                        'state_dict': model_state,
+                        'optimizer': self.optimizer.state_dict(),
+                        'scheduler': self.scheduler.state_dict(),
+                        'val_loss': loss_val,
+                        },
+                       "/saved_model")
+        except:
+            pass
         torch.save({'step': step,
                     'state_dict': model_state,
                     'optimizer': self.optimizer.state_dict(),

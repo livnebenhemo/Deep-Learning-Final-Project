@@ -1,7 +1,7 @@
 import hydra
 import torch
-from relposenet.dataset import SevenScenesRelPoseDataset
-from relposenet.augmentations import train_augmentations
+from RelPoseNet.relposenet.dataset import SevenScenesRelPoseDataset
+from RelPoseNet.relposenet.augmentations import train_augmentations
 import matplotlib.pyplot as plt
 
 

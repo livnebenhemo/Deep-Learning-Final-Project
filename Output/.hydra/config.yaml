@@ -1,0 +1,25 @@
+pipeline: Relative Camera Pose Estimation pipeline
+paths:
+  work_dir: D:/blivn/Documents/CS/Choise Courses/Deep Learning/Final Project/Final
+    Project/RelPoseNet
+  datasets_home_dir: D:\blivn\Documents\CS\Choise Courses\Deep Learning\Final Project\Final
+    Project\Data_without_depth_and_pose
+  output_home_dir: ${paths.work_dir}/output
+  snapshots_dir: ${paths.work_dir}/data/snapshots
+experiment:
+  experiment_params:
+    name: 7scenes
+    bs: 16
+    n_workers: 8
+    paths:
+      img_path: D:\blivn\Documents\CS\Choise Courses\Deep Learning\Final Project\Final
+        Project\Data_without_depth_and_pose
+      test_pairs_fname: ${paths.work_dir}/assets/data/NN_7scenes.txt
+    output:
+      home_dir: ${paths.output_home_dir}/${model.model_params.name}/${experiment.experiment_params.name}
+      res_txt_fname: ${experiment.experiment_params.output.home_dir}/est_rel_poses.txt
+model:
+  model_params:
+    name: relposenet
+    backbone_net: resnet34
+    snapshot: ${paths.snapshots_dir}/${model.model_params.name}/best_val_flipped_1_dropout_no_grey.pth

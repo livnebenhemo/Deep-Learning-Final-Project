@@ -1,0 +1,9 @@
+Orientation error, deg:
+fire: 15.25
+office: 12.51
+Mean averaged orientation: 13.88 deg.
+--------------------------------------------------------
+Translation error, m:
+fire: 0.34
+office: 0.30
+Mean averaged translation: 0.32 m.

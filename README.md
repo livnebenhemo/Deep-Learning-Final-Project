@@ -1,5 +1,4 @@
 # RelPoseNet
-A PyTorch version of the ego-motion estimation pipeline proposed in [our work](https://openaccess.thecvf.com/content_ICCV_2017_workshops/papers/w17/Laskar_Camera_Relocalization_by_ICCV_2017_paper.pdf). The official implementation (in Lua) is available at https://github.com/AaltoVision/camera-relocalisation
 
 ## Evaluation on the 7-Scenes dataset
 scene|[Lua](https://openaccess.thecvf.com/content_ICCV_2017_workshops/papers/w17/Laskar_Camera_Relocalization_by_ICCV_2017_paper.pdf)| PyTorch (this repo)
@@ -23,10 +22,6 @@ source activate my_fancy_env
 ```
 pip install -r requirements.txt
 ```
-
-## Evaluation and Training
-Evaluation and training have been performed on the 7-Scenes dataset available [here](https://www.microsoft.com/en-us/research/project/rgb-d-dataset-7-scenes/). Important!!! The images have to be resized such that the smaller dimension is 256 and the aspect ratio is intact. This could be done using the following command:
-```find . -name "*.color.png" | xargs -I {} convert {} -resize "256^>" {}```
 
 ### Evaluation
 - download an [archive](https://drive.google.com/drive/folders/1TnVuR2bNZviYYdT3XLqCW4xjO19eLG6T?usp=sharing) with the model snapshot and unpack it to the working directory

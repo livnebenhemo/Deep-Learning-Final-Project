@@ -5,7 +5,7 @@ from os import path as osp
 
 
 # based on https://pytorch.org/tutorials/beginner/fgsm_tutorial.html
-from RelPoseNet.attacks.FGM import fgm_attack
+from attacks.FGM import fgm_attack
 
 
 def evaluate_fgm_two_images(self, epsilon, is_defense=False):

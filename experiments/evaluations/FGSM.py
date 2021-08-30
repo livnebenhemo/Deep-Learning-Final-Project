@@ -6,7 +6,7 @@ from os import path as osp
 
 
 # https://pytorch.org/tutorials/beginner/fgsm_tutorial.html
-from RelPoseNet.attacks.FGSM import fgsm_attack
+from attacks.FGSM import fgsm_attack
 
 
 def evaluate_fgsm_two_images(self, epsilon, is_defense=False, is_distance=False):

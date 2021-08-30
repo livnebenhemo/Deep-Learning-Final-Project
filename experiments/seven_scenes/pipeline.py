@@ -4,18 +4,18 @@ from numba import cuda
 from tqdm import tqdm
 import torch
 
-from RelPoseNet.experiments.service.benchmark_base import Benchmark
-from RelPoseNet.relposenet.criterion import RelPoseCriterion
-from RelPoseNet.relposenet.dataset import SevenScenesTestDataset
-from RelPoseNet.relposenet.augmentations import get_augmentations, get_defense_augmentation
-from RelPoseNet.relposenet.model import RelPoseNet
-import RelPoseNet.experiments.evaluations.FGSM
-import RelPoseNet.experiments.evaluations.I_FGSM
-import RelPoseNet.experiments.evaluations.toggle_I_FGSM
-import RelPoseNet.experiments.evaluations.FGM
-import RelPoseNet.experiments.evaluations.weighted_FGM
-import RelPoseNet.experiments.evaluations.PGD
-import RelPoseNet.experiments.evaluations.CW
+from experiments.service.benchmark_base import Benchmark
+from relposenet.criterion import RelPoseCriterion
+from relposenet.dataset import SevenScenesTestDataset
+from relposenet.augmentations import get_augmentations, get_defense_augmentation
+from relposenet.model import RelPoseNet
+import experiments.evaluations.FGSM
+import experiments.evaluations.I_FGSM
+import experiments.evaluations.toggle_I_FGSM
+import experiments.evaluations.FGM
+import experiments.evaluations.weighted_FGM
+import experiments.evaluations.PGD
+import experiments.evaluations.CW
 
 
 class SevenScenesBenchmark(Benchmark):
@@ -52,7 +52,7 @@ class SevenScenesBenchmark(Benchmark):
         print(f'Loading RelPoseNet model...')
         model_params_cfg = self.cfg.model.model_params
         #model = RelPoseNet(model_params_cfg)
-        model = RelPoseNet.relposenet.model.RelPoseNet(model_params_cfg)
+        model = RelPoseNet(model_params_cfg)
 
         data_dict = torch.load(model_params_cfg.snapshot)
         model.load_state_dict(data_dict['state_dict'])
@@ -87,44 +87,44 @@ class SevenScenesBenchmark(Benchmark):
 
     # https://pytorch.org/tutorials/beginner/fgsm_tutorial.html
     def evaluate_fgsm_two_images(self, epsilon, is_defense=False, is_distance=False):
-        return RelPoseNet.experiments.evaluations.FGSM.evaluate_fgsm_two_images(self, epsilon, is_defense, is_distance)
+        return experiments.evaluations.FGSM.evaluate_fgsm_two_images(self, epsilon, is_defense, is_distance)
 
     def evaluate_fgsm_one_image(self, epsilon, is_show=False, is_defense=False, is_distance=False):
-        return RelPoseNet.experiments.evaluations.FGSM.evaluate_fgsm_one_image(self, epsilon, is_show, is_defense, is_distance)
+        return experiments.evaluations.FGSM.evaluate_fgsm_one_image(self, epsilon, is_show, is_defense, is_distance)
 
     # https://pytorch.org/tutorials/beginner/fgsm_tutorial.html
     def evaluate_fgm_two_images(self, epsilon, is_defense=False):
-        return RelPoseNet.experiments.evaluations.FGM.evaluate_fgm_two_images(self, epsilon, is_defense)
+        return experiments.evaluations.FGM.evaluate_fgm_two_images(self, epsilon, is_defense)
 
     def evaluate_fgm_one_image(self, epsilon, is_defense=False):
-        return RelPoseNet.experiments.evaluations.FGM.evaluate_fgm_one_image(self, epsilon, is_defense)
+        return experiments.evaluations.FGM.evaluate_fgm_one_image(self, epsilon, is_defense)
 
     def evaluate_weighted_fgm_two_images(self, epsilon, is_defense=False, is_distance=False):
-        return RelPoseNet.experiments.evaluations.weighted_FGM.evaluate_weighted_fgm_two_images(self, epsilon, is_defense, is_distance)
+        return experiments.evaluations.weighted_FGM.evaluate_weighted_fgm_two_images(self, epsilon, is_defense, is_distance)
 
     def evaluate_weighted_fgm_one_image(self, epsilon,is_show=False, is_defense=False, is_distance=False):
-        return RelPoseNet.experiments.evaluations.weighted_FGM.evaluate_weighted_fgm_one_image(self, epsilon, is_show, is_defense, is_distance)
+        return experiments.evaluations.weighted_FGM.evaluate_weighted_fgm_one_image(self, epsilon, is_show, is_defense, is_distance)
 
     # https://arxiv.org/pdf/1607.02533.pdf
     # https://github.com/Harry24k/AEPW-pytorch/blob/master/Adversarial%20examples%20in%20the%20physical%20world.ipynb
     def evaluate_iterative_fgsm_one_image(self, epsilon, is_show=False, is_defense=False, is_distance=False):
-        return RelPoseNet.experiments.evaluations.I_FGSM.evaluate_iterative_fgsm_one_image(self, epsilon, is_show, is_defense, is_distance)
+        return experiments.evaluations.I_FGSM.evaluate_iterative_fgsm_one_image(self, epsilon, is_show, is_defense, is_distance)
 
     def evaluate_iterative_fgsm_two_images(self, epsilon, is_show=False, is_defense=False, is_distance=False):
-        return RelPoseNet.experiments.evaluations.I_FGSM.evaluate_iterative_fgsm_two_images(self, epsilon, is_show, is_defense, is_distance)
+        return experiments.evaluations.I_FGSM.evaluate_iterative_fgsm_two_images(self, epsilon, is_show, is_defense, is_distance)
 
     def evaluate_toggle_iterative_fgsm_two_images(self, epsilon, is_show=False, is_defense=False, is_distance=False):
-        return RelPoseNet.experiments.evaluations.toggle_I_FGSM.evaluate_toggle_iterative_fgsm_two_images(self, epsilon, is_show, is_defense, is_distance)
+        return experiments.evaluations.toggle_I_FGSM.evaluate_toggle_iterative_fgsm_two_images(self, epsilon, is_show, is_defense, is_distance)
 
     # https://github.com/Harry24k/PGD-pytorch
     def evaluate_pgd_one_image(self, epsilon, is_show=False, is_defense=False, is_distance=False):
-        return RelPoseNet.experiments.evaluations.PGD.evaluate_pgd_one_image(self, epsilon, is_show, is_defense, is_distance)
+        return experiments.evaluations.PGD.evaluate_pgd_one_image(self, epsilon, is_show, is_defense, is_distance)
 
     def evaluate_pgd_two_images(self, epsilon, is_show=False, is_defense=False, is_distance=False):
-        return RelPoseNet.experiments.evaluations.PGD.evaluate_pgd_two_images(self, epsilon, is_show, is_defense, is_distance)
+        return experiments.evaluations.PGD.evaluate_pgd_two_images(self, epsilon, is_show, is_defense, is_distance)
 
     def evaluate_cw_one_image(self, c, learning_rate, is_show=False, is_defense=False, is_distance=False):
-        return RelPoseNet.experiments.evaluations.CW.evaluate_cw_one_image(self, c, learning_rate, is_show, is_defense, is_distance)
+        return experiments.evaluations.CW.evaluate_cw_one_image(self, c, learning_rate, is_show, is_defense, is_distance)
 
 
 def tensor_to_np(tensor):

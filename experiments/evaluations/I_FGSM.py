@@ -9,7 +9,7 @@ from os import path as osp
 
 # https://arxiv.org/pdf/1607.02533.pdf
 # https://github.com/Harry24k/AEPW-pytorch/blob/master/Adversarial%20examples%20in%20the%20physical%20world.ipynb
-from RelPoseNet.attacks.iterative_fgsm import ifgsm_attack
+from attacks.iterative_fgsm import ifgsm_attack
 
 
 def evaluate_iterative_fgsm_one_image(self, epsilon, is_show=False, is_defense=False, is_distance=False):

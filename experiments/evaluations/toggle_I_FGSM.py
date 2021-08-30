@@ -6,7 +6,7 @@ import torch
 import os
 from os import path as osp
 
-from RelPoseNet.attacks.iterative_fgsm import ifgsm_attack
+from attacks.iterative_fgsm import ifgsm_attack
 
 
 def evaluate_toggle_iterative_fgsm_two_images(self, epsilon, is_show=False, is_defense=False, is_distance=False):

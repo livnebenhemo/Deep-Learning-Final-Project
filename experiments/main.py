@@ -1,7 +1,12 @@
 import hydra
-from RelPoseNet.experiments.seven_scenes.pipeline import SevenScenesBenchmark
+from experiments.seven_scenes.pipeline import SevenScenesBenchmark
 import matplotlib.pyplot as plt
 import numpy as np
+from evaluate.CW import evaluate_cw_one_image
+from evaluate.FGSM import evaluate_fgsm_one_image, evaluate_fgsm_two_images
+from evaluate.I_FGSM import evaluate_iterative_fgsm_one_image, evaluate_iterative_fgsm_two_images
+from evaluate.PGD import evaluate_pgd_one_image, evaluate_pgd_two_images
+from evaluate.toggle_I_FGSM import evaluate_toggle_iterative_fgsm_two_images
 
 
 @hydra.main(config_path="configs", config_name="main")

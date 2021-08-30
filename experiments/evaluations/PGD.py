@@ -7,7 +7,7 @@ import copy
 
 
 # https://github.com/Harry24k/PGD-pytorch
-from RelPoseNet.attacks.PGD import pgd_attack
+from attacks.PGD import pgd_attack
 
 
 def evaluate_pgd_one_image(self, epsilon, is_show=False, is_defense=False, is_distance=False):

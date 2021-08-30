@@ -5,7 +5,7 @@ import os
 from os import path as osp
 
 
-from RelPoseNet.attacks.weighted_FGM import weighted_fgm_attack
+from attacks.weighted_FGM import weighted_fgm_attack
 
 
 def evaluate_weighted_fgm_two_images(self, epsilon, is_defense=False, is_distance=False):

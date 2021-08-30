@@ -8,7 +8,7 @@ os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 
 
 # https://github.com/Harry24k/CW-pytorch
-from RelPoseNet.attacks.CW import cw_l2_attack_one_image, cw_l2_attack_two_images
+from attacks.CW import cw_l2_attack_one_image, cw_l2_attack_two_images
 
 
 def evaluate_cw_one_image(self, c, learning_rate, is_show=False, is_defense=False, is_distance=False):
